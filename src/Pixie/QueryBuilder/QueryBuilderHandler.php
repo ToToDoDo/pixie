@@ -255,7 +255,7 @@ class QueryBuilderHandler
             unset($this->statements['selects']);
         }
 
-        if ($row[0]['field']) {
+        if (isset($row[0]['field'])) {
             return (int) $row[0]['field'];
         } else if ($row[0]->field) {
             return (int) $row[0]->field;
@@ -434,7 +434,7 @@ class QueryBuilderHandler
 
         list($response, $executionTime) = $this->statement($queryObject->getSql(), $queryObject->getBindings());
         $this->fireEvents('after-delete', $queryObject, $executionTime);
-        
+
 
         return $response;
     }
