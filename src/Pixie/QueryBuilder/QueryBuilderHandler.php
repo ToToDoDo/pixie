@@ -192,6 +192,23 @@ class QueryBuilderHandler
     }
 
     /**
+     * Get one column of first row
+     *
+     * @return \stdClass|null
+     */
+    public function one()
+    {
+        $this->limit(1);
+        $result = $this->get();
+
+        if ($result && $result[0]) {
+            return array_shift($result[0]);
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * @param        $value
      * @param string $fieldName
      *
